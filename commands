@@ -1,0 +1,20 @@
+To specify multiple env in dockerfile use ENV http_proxy=http://10.65.10.4:8080 https_proxy=http://10.65.10.4:8080
+
+Else when creating container -e "http_proxy=http://10.65.10.4:8080" 
+ADD function unarchives if file is available locally not from over URL.
+
+##
+Create volume with read-only FS
+docker container create --name webs --hostname w1 -v /root/container/:/conti:ro -it ubuntu 
+
+create lvm and mount it, specify those dir name as volume -v /storage:/cont 
+
+docker volume create persis
+docker volume inspect persis
+
+#Adding current pwd as volume into container 
+
+docker container create --name web --hostname welcome  --memory=100M  -v /per:/per -it ubuntu
+
+#sharig volume  from existing container 
+docker container create --name web1 --hostname=welcome1 --volumes-from web -it ubuntu
