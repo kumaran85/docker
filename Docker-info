@@ -1,0 +1,9 @@
+#Create container without network
+docker run -d --name test1 --network none alpine:latest 
+
+Docker swarn mode classic means using key/value store swarm mode can be used without enabling swarm cluster.
+Supported key/value store is Etcd, Consul, Zookeeper.
+
+Docker multi stage build allows multiple builds in single Dockerfile.
+
+Overlay network should be created in Docker swarm cluster mode.
