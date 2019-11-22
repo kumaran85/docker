@@ -7,3 +7,11 @@ Supported key/value store is Etcd, Consul, Zookeeper.
 Docker multi stage build allows multiple builds in single Dockerfile.
 
 Overlay network should be created in Docker swarm cluster mode.
+
+Enable Docker log set debug true in daemon.json. docker daemon logs stored in /var/log/messages.
+
+{
+   "debug": true
+}   
+
+Then sudo kill -SIGHUP $(pidof dockerd) #HUP signal reloads docker daemon.
