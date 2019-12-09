@@ -1,0 +1,7 @@
+While stopping container it will send SIGTERM signal to stop running process inside it. After default 10sec grace, send SIGKILL.
+Docker-compose can use json also.
+docker-compose up to -> start or restart services.
+docker-compose run -> to run admin tasks on containers 
+docker-compose start -> restarts all services.
+
+REXRAY volume plugin for docker. 
