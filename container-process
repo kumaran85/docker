@@ -4,4 +4,6 @@ docker-compose up to -> start or restart services.
 docker-compose run -> to run admin tasks on containers 
 docker-compose start -> restarts all services.
 
+Docker build context makes small image if there's no data on current dir. Unless image size wiil be more. 
+
 REXRAY volume plugin for docker. 
