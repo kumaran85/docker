@@ -1,0 +1,6 @@
+FROM ubuntu:16.04 AS web
+ENV HTTP_PROXY="http://10.65.10.4:8080"
+#Extract content and copies dirs to /root, only gzip, bzip2, gz
+ADD --chown=root:staff httpd-2.4.41.tar.bz2 /root
+#copies that zip file as it's
+COPY --chown=root:staff httpd-2.4.41.tar.bz2 /root

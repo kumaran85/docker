@@ -1,0 +1,102 @@
+#Docker image can be build using STDIN
+
+docker build -t kumaran85:test - <<EOF
+FROM alpine:latest
+RUN mkdir hai
+EOF
+
+if we include "add", "copy" will fail. To make it happen
+
+docker build -t kumaran85:test -f- . -<<EOF
+FROM alpine:latest
+RUN mkdir hai
+COPY script.sh /usr/local/bin/
+EOF
+
+#To take from remote repo. But git should be installed on host.
+docker build -t kumaran85:test -f- https://github.com/kumaran85/dockerfile.git <<EOF
+FROM alpine:latest
+COPY script.sh /usr/local/bin/
+EOF
+
+
+############
+
+Only RUN, COPY, ADD create layers
+
+
+
+RUN has 2 formats.
+1. exec
+2. SHELL 
+
+1. When instruction executed using shell form it uses "/bin/sh -c command".
+2. exec form doesn't use shell processing like RUN echo $name. It prints as $name. To print correct name from variable use shell explicitly ["sh", "-c", "echo $name"]
+exec form within paranthesis and double quotes ["sh", "-c", "useradd"]
+
+###################
+CMD
+
+CMD has 3 formats.
+
+1. CMD ["executable" , "param1", "param2" ] #This is prefered
+2. CMD ["param1" , "param2"] #as default arguments for entrypoint 
+3. CMD command param1 param2 #Shell form 
+
+There can be only one CMD instructio in Dockerfile. More than one CMD, final CMD will take impact 
+
+When using CMD in exec form code should be enclosed in double-quotes.
+
+While CMD in execu form, provide the full path for the excutable binary.
+like 
+
+CMD["/usr/sbin/dmidecide"]
+
+#######################
+LABEL:
+
+Label instructions adds metadata to an image. Can be added more than one label.
+
+#################
+EXPOSE:
+ Making container communication. using -P publish all exposed ports
+
+###############
+
+ADD:
+
+ Add obeys following rules.
+
+1. src must be inside the context of context.
+2. if src is tar.gz, then dest will be unarchived.
+3. if src is dirs, It copies entire files from dirs to dest
+4. if src is URL, to coy with file name , ADD http://www.com/file /root/file
+5. ADD --chown=root:staff httpd-2.4.41.tar.bz2 /roo  This instruction will extract and copy dirs httpd-2.4.41 to /root/httpd-2.4.41
+
+When passing Dockerfile using STDIN, there's no build context , ADD contain only URL based. Docker build -t kumaran85:test - <Dockerfile.tar.gz can be any name with tar.gz 
+
+####################
+
+COPY:
+
+When passging Dockerfile using STDIN, COPY can't be used. 
+
+###############
+
+ENTRYPOINT:
+
+It has 2 forms.
+
+1. ENTRYPOINT["command", "arg1", "arg2"]
+2. ENTRYPOINT command arg1 arg2
+
+if you need to write a starter script for a single executable, you can ensure that the final executable receives the Unix signals by using exec and gosu commands.
+ENTRYPOINT should be allowed when container used as an executable.
+
+#############
+
+USER:
+
+To execute running image as user:group 
+
+

@@ -1,0 +1,29 @@
+#Example 1
+
+ARG HTTP_PROXY=http://10.65.10.4:8080
+FROM ubuntu:16.04  AS test
+RUN   mkdir /root/hai
+ENV nam /opt 
+COPY proxy $nam
+#ARG HTTP_PROXY
+ENV HTTP_PROXY=${HTTP_PROXY}
+WORKDIR ${nam} 
+COPY script.sh /usr/local/bin/
+
+#Execute above script using docker build --build-arg HTTP_PROXY=http://10.65.15.147:8080 -t ezhil:kutties . And env is 15.147 
+
+###########################################
+
+#Next example 2 
+
+ARG HTTP_PROXY=http://10.65.10.4:8080
+FROM ubuntu:16.04  AS test
+RUN   mkdir /root/hai
+ENV nam /opt 
+COPY proxy $nam
+ARG HTTP_PROXY
+ENV HTTP_PROXY=${HTTP_PROXY}
+WORKDIR ${nam} 
+COPY script.sh /usr/local/bin/
+
+#Execute above script using docker build --build-arg HTTP_PROXY=http://10.65.14.149:8080 -t ezhil:kutties . And env is 14.149

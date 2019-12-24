@@ -1,0 +1,11 @@
+dockerd --dns 8.8.8.8 #it sets for all containers
+dockerd --dns-search example.com
+
+#adding insecure registries
+/etc/docker/daemon.json 
+{
+  "inseure-registries" : ["10.65.10.0/24"]
+}
+#############
+
+

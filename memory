@@ -1,0 +1,10 @@
+-m or --memory to set maximum limit memory 
+--memory-reservation soft memory limit 
+
+--oom-kill-disable. If OOM occurs, kernel kills processes in a container.
+if --memory-swap and --memory is equal ,container doesn't use swap.
+if --memory-swap=-1, it has unlimited access to host system.
+
+--cpuset-cpus Limit the specific CPUs or cores a container can use.
+If more than one CPU, 0-3 assigns,[1,2,3,4] CPU or 1,3 which assigns second and fourth CPUs.
+--cpus

@@ -1,0 +1,6 @@
+FROM ubuntu:16.04 AS FIRST 
+RUN   mkdir /root/hai
+COPY proxy /root/ 
+COPY script.sh /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/script.sh"]
+CMD ["/bin/bash"]
