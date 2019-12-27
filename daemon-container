@@ -1,0 +1,26 @@
+IPv6 Supports only on Linux hosts
+Edit /etc/docker/daemon.json
+{
+  "ipv6": true
+}
+
+systemctel reload docker
+
+#Docker iptables rules are added to DOCKER chain. Don't change it.
+If you need to load any rules before DOCKER chain, add rules to DOCKER-USER chain.
+
+To use proxy in container, use ENV during build time or mentio in Dokcerfile.
+
+Otherwise, On user home dir create as ~/.docker/config.json  and add as below
+
+{
+ "proxies":
+ {
+   "default":
+   {
+     "httpProxy": "http://127.0.0.1:3001",
+     "httpsProxy": "http://127.0.0.1:3001",
+     "noProxy": "*.test.example.com,.example2.com"
+   }
+ }
+}
