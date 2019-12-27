@@ -2,6 +2,17 @@
 Specify the dockerfile and context using -f like as below
 dokcer build -f docker/Dockerfile docker/context
 
+Using copy instruction copies file locally. 
+To download files remotely don't use ADD. Deletion of that file not possible. better use curl or wget to download it. 
+
+Try below:
+
+RUN mkdir -p /usr/src/things \
+    && curl -SL http://example.com/big.tar.xz \
+    | tar -xJC /usr/src/things
+
+using STDIN as Dockerfile:
+
 docker build -t kumaran85:test - <<EOF
 FROM alpine:latest
 RUN mkdir hai
