@@ -1,11 +1,13 @@
 #Docker image can be build using STDIN
+Specify the dockerfile and context using -f like as below
+dokcer build -f docker/Dockerfile docker/context
 
 docker build -t kumaran85:test - <<EOF
 FROM alpine:latest
 RUN mkdir hai
 EOF
 
-if we include "add", "copy" will fail. To make it happen
+if we include "add", "copy" will fail while using above syntax.. To make it happen
 
 docker build -t kumaran85:test -f- . -<<EOF
 FROM alpine:latest
@@ -22,7 +24,7 @@ EOF
 
 ############
 
-Only RUN, COPY, ADD create layers
+Only RUN, COPY, ADD create layers. 
 
 
 
