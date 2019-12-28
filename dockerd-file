@@ -7,5 +7,17 @@ dockerd --dns-search example.com
   "inseure-registries" : ["10.65.10.0/24"]
 }
 #############
+By defalt docker runs on unix socket, /var/run/docker.sock. Docker can listen on unix, tcp ,fd. tcp 2375 with 2375 and 2376 https.
+
+DOCKER_HOST is the environment variable to set docker listening on different ports. If you need to change, set this on docker client.
+
+docker uses overlay2 which has fast union FS and aviods execssive inode consumption.
+
+dockerd -s overlay2.
+
+dockerd --storage-opt dm.basesize=20G. In Linux kernel 4.0, with xfs dockerd -s overlay2 --storage-opt overlay2.size=1G
+
+For better performance use dm.metadata.dev on SSD. 
+dockerd --storage-opt dm.metadata.dev=/dev/sdc.
 
 
